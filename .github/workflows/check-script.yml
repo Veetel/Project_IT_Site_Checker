@@ -47,13 +47,21 @@ jobs:
         name: site-checker-log
         path: log.txt
 
-    - name: Create git tag
+    - name: Create git tag and push
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT }}
       run: |
-        git config --global user.name "github-actions"
-        git config --global user.email "github-actions@github.com"
-        git tag auto-log-${{ github.run_number }}
-        git push origin auto-log-${{ github.run_number }}
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
 
+          TAG="auto-log-${{ github.run_number }}"
+          git tag $TAG
+
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
+          git push origin $TAG
+
+
+          
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
       with:
