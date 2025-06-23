@@ -5,7 +5,7 @@ name: Check Python script
 #trigger workflow when pushed in main branch
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 #define the list  of jobs (can be multiple)
 jobs:
