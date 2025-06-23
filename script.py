@@ -1,8 +1,13 @@
 import requests
 import datetime
+import os
 
-user_input = input("Enter website URLs separated by commas: \n")
-urls = [] 
+ci = os.environ.get("GITHUB_ACTIONS") == "true"
+if ci :
+    urls =["https://google.com", "https://github.com", "https://invalid.tld"]
+else:
+    user_input = input("Enter website URLs separated by commas: \n")
+    urls = [] 
 
 ## url.strip cut spaces around urls
 
