@@ -9,14 +9,14 @@ else:
     user_input = input("Enter website URLs separated by commas: \n")
     urls = [] 
 
-## url.strip cut spaces around urls
+    ## url.strip cut spaces around urls
 
-for raw_url in user_input.split(","):
-    url = raw_url.strip()
-    if not url.startswith("https://") and not url.startswith("http://"):
-        url = "https://" + url
+    for raw_url in user_input.split(","):
+        url = raw_url.strip()
+        if not url.startswith("https://") and not url.startswith("http://"):
+            url = "https://" + url
 
-    urls.append(url)
+        urls.append(url)
 
 
 with open("log.txt","a") as file : ## Open a file and auto close it. Sililar to open() and close()
