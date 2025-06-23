@@ -55,11 +55,11 @@ jobs:
         name: "Automated Log #${{ github.run_number }}"
         body: "Log file from workflow run #${{ github.run_id }}"
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PAT }}
 
     - name: Upload log.txt to release
       uses: softprops/action-gh-release@v1
       with:
         files: log.txt
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PAT }}
