@@ -1,0 +1,39 @@
+
+#workflow's name
+name: Check Python script
+
+#trigger workflow when pushed in main branch
+on:
+  push:
+    branches: [ main ]
+
+#define the list  of jobs (can be multiple)
+jobs:
+  run-script: #name of the 1st job
+
+#run on the latest version of Ubuntu (VM)
+    runs-on: ubuntu-latest
+
+#List of steps to run in order
+    steps:
+
+#Download the content of the Repo
+    - name: Checkout repository
+      uses: actions/checkout@v3 #@v3 = version 3 of the checkout action (to be sure it works)
+
+#Set up Python on VM
+    - name: Set up Python
+      uses: actions/setup-python@v4
+#define the version of Python
+      with:
+        python-version: '3.10'
+
+#install library/dependencies needed for the script
+    - name: Install dependencies
+      run: |
+        pip install requests
+
+#Run the Python Script
+    - name: Run the script
+      run: |
+        python3 script.py
