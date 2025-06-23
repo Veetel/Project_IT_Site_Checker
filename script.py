@@ -4,7 +4,7 @@ import os
 
 ci = os.environ.get("CI") == "true"
 if ci :
-    urls =["https://google.com", "https://github.com", "https://invalid.tld"]
+    urls =["https://google.com", "https://github.com" , "https://invalid.tld"]
 else:
     user_input = input("Enter website URLs separated by commas: \n")
     urls = [] 

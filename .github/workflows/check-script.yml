@@ -7,6 +7,9 @@ on:
   push:
     branches: [ master ]
 
+  schedule:
+    - cron: '0 8 * * *' #minute hour day_of_month day_of_week 
+
 #define the list  of jobs (can be multiple)
 jobs:
   run-script: #name of the 1st job
@@ -43,3 +46,20 @@ jobs:
       with:
         name: site-checker-log
         path: log.txt
+
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: "auto-log-${{ github.run_number }}"
+        name: "Automated Log #${{ github.run_number }}"
+        body: "Log file from workflow run #${{ github.run_id }}"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Upload log.txt to release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: log.txt
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
