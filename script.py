@@ -2,7 +2,7 @@ import requests
 import datetime
 import os
 
-ci = os.environ.get("GITHUB_ACTIONS") == "true"
+ci = os.environ.get("CI") == "true"
 if ci :
     urls =["https://google.com", "https://github.com", "https://invalid.tld"]
 else:
