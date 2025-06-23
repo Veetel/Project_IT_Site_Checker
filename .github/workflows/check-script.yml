@@ -39,7 +39,7 @@ jobs:
         python3 script.py
 #upload log.txt as an artifact
     - name : Upload log file
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: site-checker-log
         path: log.txt
